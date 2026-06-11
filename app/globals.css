@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #F8F9FC;
+  --color-surface: #F0F2F8;
+  --color-surface2: #E8EBF4;
+  --color-border: #E2E6EF;
+  --color-border2: #CDD3E0;
+  --color-text: #1A1F2E;
+  --color-muted: #6B7280;
+  --color-dim: #9CA3AF;
+  --color-cyan: #0891B2;
+  --color-cyan-dark: #0E7490;
+  --color-cyan-light: #E0F7FA;
+  --color-purple: #7C3AED;
+  --color-purple-light: #EDE9FE;
+  --color-orange: #EA580C;
+  --color-orange-light: #FFF7ED;
+  --color-pink: #DB2777;
+  --color-pink-light: #FCE7F3;
+  --color-ok: #059669;
+  --color-ok-light: #DCFCE7;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #F8F9FC;
+  color: #1A1F2E;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.badge-dot {
+  animation: badge-pulse 2s ease-in-out infinite;
 }
