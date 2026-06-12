@@ -39,3 +39,9 @@ body {
 .badge-dot {
   animation: badge-pulse 2s ease-in-out infinite;
 }
+
+.body-text {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.9;
+}

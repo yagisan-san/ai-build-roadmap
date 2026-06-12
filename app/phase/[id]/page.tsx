@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPhase, TRACKS, PHASES, type Phase, type Priority } from '@/lib/phases'
+import Phase00Content from './content/phase-00'
+
+const CONTENT_MAP: Record<string, React.ComponentType> = {
+  '00': Phase00Content,
+}
 
 const PRIORITY_LABELS: Record<Priority, { label: string; className: string }> = {
   must:     { label: '🌱 まず知る',         className: 'bg-[#E0F7FA] text-[#0E7490] border border-[#A5F3FC]' },
@@ -123,7 +128,7 @@ export default async function PhasePage({ params }: { params: Promise<{ id: stri
         </div>
       </div>
 
-      {/* Content placeholder */}
+      {/* Content */}
       {phase.status === 'coming-soon' ? (
         <div className="text-center py-16 border-2 border-dashed border-[#E2E6EF] rounded-2xl mb-10">
           <p className="text-3xl mb-3">🚧</p>
@@ -132,12 +137,14 @@ export default async function PhasePage({ params }: { params: Promise<{ id: stri
             作者が実際に学んだあと、リアルな体験をもとに作成します。
           </p>
         </div>
+      ) : CONTENT_MAP[phase.id] ? (
+        <div className="bg-white border border-[#E2E6EF] rounded-2xl p-8 mb-10">
+          <p className="text-[13px] font-bold text-[#0891B2] mb-6 pb-3 border-b border-[#E2E6EF]">📖 教材</p>
+          {(() => { const C = CONTENT_MAP[phase.id]; return <C /> })()}
+        </div>
       ) : (
         <div className="bg-white border border-[#E2E6EF] rounded-2xl p-8 mb-10">
-          <p className="text-[13px] font-bold text-[#0891B2] mb-3">📖 教材コンテンツ</p>
-          <p className="text-[13px] text-[#6B7280] leading-relaxed">
-            ここに教材の本文が入ります。作者が実際に学んだ内容・詰まったポイント・気づきをまとめたリアルなコンテンツです。
-          </p>
+          <p className="text-[13px] text-[#9CA3AF]">教材コンテンツを準備中です。</p>
         </div>
       )}
 
